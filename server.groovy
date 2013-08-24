@@ -71,19 +71,10 @@ import com.sun.net.httpserver.HttpServer;
 			System.out.println("1");
 			GraphDatabaseService graphDb = new GraphDatabaseFactory()
 					.newEmbeddedDatabase("yurl.db");
-
-			System.out.println("2");
 			ExecutionEngine engine = new ExecutionEngine(graphDb);
-
-
-			System.out.println("3");
 			ExecutionResult result = engine.execute("start n=node(*) where not(has(n.type))  return n;");
-
-			System.out.println("4");
 			Iterator<Node> n_column = result.columnAs("n");
 			String nodeResult = "";
-
-			System.out.println("5");
 			JSONArray jsonArray = new JSONArray();
 			Iterable<Node> allNodes = GlobalGraphOperations.at(graphDb).getAllNodes();
 
@@ -92,8 +83,6 @@ import com.sun.net.httpserver.HttpServer;
 				// not from the n.name in this case.
 				// nodeResult = node + ": " + node.getId();
 				System.out.println(node.getId());
-				// }
-				// for (final Node node : allNodes) {
 				long id = node.getId();
 				String title = "";
 				if (node.hasProperty("title")) {
@@ -124,8 +113,8 @@ import com.sun.net.httpserver.HttpServer;
 				@QueryParam("childID") String childID) throws JSONException {
 			System.out.println("relate() " + parentID + ", " + childID);
 
-			GraphDatabaseService graphDb = new GraphDatabaseFactory()
-					.newEmbeddedDatabase("yurl.db");
+			GraphDatabaseService graphDb = new GraphDatabaseFactory().newEmbeddedDatabase("yurl.db");
+			
 			Transaction tx = graphDb.beginTx();
 			graphDb.getNodeById(Long.parseLong(parentID)).createRelationshipTo(
 					graphDb.getNodeById(Long.parseLong(childID)), RelTypes.CONTAINS);
