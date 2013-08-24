@@ -14,12 +14,13 @@ $(document).ready(function(){
         var kb = new kb_shortcut();
         kb.add(b.keyCombo, function(){
 			alert(b.categoryNode);
+			$("#2").remove();
 		})
       });
     });
     $.getJSON("http://localhost:9099/yurl/uncategorized",function(result){
       $.each(result, function(id, field){
-        $("#urls").append("<li>[" + id + "]: "+ field.title + " (" + field.url + ") " + "</li>");
+        $("#urls").append("<li id="+id+">[" + id + "]: "+ field.title + " (" + field.url + ") " + "</li>");
       });
     });
   });
