@@ -58,6 +58,29 @@ public class HelloWorldResource { // Must be public
 				.entity(jsonArray.toString()).type("application/json").build();
 
 	}
+	
+	@GET
+	@Path("keys")
+	@Produces("application/json")
+	public Response keys() throws JSONException {
+			JSONArray jsonArray = new JSONArray() {
+			{
+				put(new JSONObject() {
+					{
+						put("categoryNode", "12345678");
+						put("keyCombo", new JSONArray() {
+							{
+								put("Shift");
+								put("t");
+							}
+						});
+					}
+				});
+			}
+		};
+		return Response.ok().header("Access-Control-Allow-Origin", "*")
+				.entity(jsonArray.toString()).type("application/json").build();
+	}
 }
 
 HttpServer server = JdkHttpServerFactory.createHttpServer(

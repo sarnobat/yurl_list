@@ -7,6 +7,11 @@
 <script>
 $(document).ready(function(){
   $("button").click(function(){
+  	$.getJSON("http://localhost:9099/yurl/keys",function(result){
+      $.each(result, function(a,b,c){
+        $("#keys").text(b.categoryNode + "::" + b.keyCombo);
+      });
+    });
     $.getJSON("http://localhost:9099/yurl/uncategorized",function(result){
       $.each(result, function(id, field){
         $("div").append(id + ": "+ field.title + " (" + field.url + ") " + "<br>");
@@ -19,8 +24,9 @@ $(document).ready(function(){
 <body>
 
 <textarea id="urls">http://www.yahoo.com</textarea>
-<button>Stash this</button>
+<button>get urls</button>
 <div></div>
+<textarea id="keys"></textarea>
 
 </body>
 </html>
