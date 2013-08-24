@@ -72,7 +72,7 @@ import com.sun.net.httpserver.HttpServer;
 			GraphDatabaseService graphDb = new GraphDatabaseFactory()
 					.newEmbeddedDatabase("yurl.db");
 			ExecutionEngine engine = new ExecutionEngine(graphDb);
-			ExecutionResult result = engine.execute("start n=node(*) where not(has(n.type))  return n;");
+			ExecutionResult result = engine.execute("start n=node(*) MATCH n<-[r?:link]-source where not(has(n.type)) and r is null return n;");
 			Iterator<Node> n_column = result.columnAs("n");
 			String nodeResult = "";
 			JSONArray jsonArray = new JSONArray();
