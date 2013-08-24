@@ -2,6 +2,7 @@
 <html>
 <head>
 <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"> -->
+<script type="text/javascript" src="js/kb_shortcut.packed.js" ></script>
 <script src="jquery/jquery-1.9.1.js">
 </script>
 <script>
@@ -10,6 +11,10 @@ $(document).ready(function(){
   	$.getJSON("http://localhost:9099/yurl/keys",function(result){
       $.each(result, function(a,b,c){
         $("#keys").append(b.categoryNode + "::" + b.keyCombo + "\n");
+        var kb = new kb_shortcut();
+        kb.add(b.keyCombo, function(){
+			alert(b.categoryNode);
+		})
       });
     });
     $.getJSON("http://localhost:9099/yurl/uncategorized",function(result){
