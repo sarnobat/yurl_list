@@ -68,6 +68,7 @@ public class HelloWorldResource { // Must be public
 				put(new JSONObject() {
 					{
 						put("categoryNode", "87654321");
+						put("key", "B");
 						put("keyCombo", new JSONArray() {
 							{
 								put("Shift");
