@@ -14,7 +14,6 @@ $(document).ready(function(){
         $("#keys").append(binding.categoryNode + "::" + binding.keyCombo + "\n");
         $(window).keypress(function(event) {
         	if (binding.key == String.fromCharCode(event.which)) {
-				alert(String.fromCharCode(event.which));        		
 				var url = "http://localhost:9099/yurl/relate?parent=" +binding.categoryNode+"&child=" +  $("#urls").children()[0].id;
 				$.getJSON(url,function(result){
 					if (result.status == 'SUCCESS') {
@@ -22,8 +21,6 @@ $(document).ready(function(){
 					}
 				});
 			}
-//			alert(String.fromCharCode(event.which));
-
 			// we can't use the kb_shortcuts API because you can't keep the shift key held down in between keypresses
 		});
       });
