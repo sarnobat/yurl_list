@@ -13,8 +13,8 @@ $(document).ready(function(){
         $("#keys").append(b.categoryNode + "::" + b.keyCombo + "\n");
         var kb = new kb_shortcut();
         kb.add(b.keyCombo, function(){
-			alert(b.categoryNode);
-			$("#urls:first-child")..remove();
+			//alert(b.categoryNode +" "+ $("#urls:first-child").id);
+			$("#urls").children()[0].remove();
 		})
       });
     });
