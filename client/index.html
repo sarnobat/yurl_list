@@ -16,12 +16,10 @@ $(document).ready(function(){
         kb.add(b.keyCombo, function(){
 			//alert(b.categoryNode);
 			var url = "http://localhost:9099/yurl/relate?parent=" +b.categoryNode+"&child=" +  $("#urls").children()[0].id;
-			alert(url);
 			$.getJSON(url,function(result){
-				// TODO: check if successful or not
-				alert(result);
-				alert(result.status);
-				//$("#urls").children()[0].remove();
+				if (result.status == 'SUCCESS') {
+					$("#urls").children()[0].remove();
+				}
 			});
 
 		})
