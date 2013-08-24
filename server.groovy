@@ -15,6 +15,7 @@ import org.glassfish.jersey.server.ResourceConfig;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.neo4j.graphdb.*;
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.Node;
 import org.neo4j.graphdb.factory.GraphDatabaseFactory;
@@ -67,26 +68,23 @@ public class HelloWorldResource { // Must be public
 			{
 				put(new JSONObject() {
 					{
-						put("categoryNode", "87654321");
+						put("categoryNode", "47");
 						put("key", "B");
-						put("keyCombo", new JSONArray() {
-							{
-								put("Shift");
-								put("b");
-							}
-						});
+						put("name", "business");
 					}
 				});
 				put(new JSONObject() {
 					{
-						put("categoryNode", "12345678");
+						put("categoryNode", "46");
 						put("key", "T");
-						put("keyCombo", new JSONArray() {
-							{
-								put("Shift");
-								put("t");
-							}
-						});
+						put("name", "technology");
+					}
+				});
+				put(new JSONObject() {
+					{
+						put("categoryNode", "45");
+						put("key", ")");
+						put("name", "root");
 					}
 				});
 			}
@@ -108,6 +106,10 @@ public class HelloWorldResource { // Must be public
 		};
 		return Response.ok().header("Access-Control-Allow-Origin", "*")
 				.entity(json.toString()).type("application/json").build();
+	}
+	private static enum RelTypes implements RelationshipType
+	{
+		CONTAINS
 	}
 }
 
