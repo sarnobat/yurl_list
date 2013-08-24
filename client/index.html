@@ -8,13 +8,21 @@
 <script>
 $(document).ready(function(){
   $("button").click(function(){
+  			
   	$.getJSON("http://localhost:9099/yurl/keys",function(result){
       $.each(result, function(a,b,c){
         $("#keys").append(b.categoryNode + "::" + b.keyCombo + "\n");
         var kb = new kb_shortcut();
         kb.add(b.keyCombo, function(){
-			//alert(b.categoryNode +" "+ $("#urls:first-child").id);
-			$("#urls").children()[0].remove();
+			//alert(b.categoryNode);
+			var url = "http://localhost:9099/yurl/relate?parent=" +b.categoryNode+"&child=" +  $("#urls").children()[0].id;
+			alert(url);
+			$.getJSON(url,function(result){
+				// TODO: check if successful or not
+				alert("url executed");
+				//$("#urls").children()[0].remove();
+			});
+
 		})
       });
     });
