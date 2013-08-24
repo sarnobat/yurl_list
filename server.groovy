@@ -1,5 +1,25 @@
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+
+import org.glassfish.jersey.jdkhttp.JdkHttpServerFactory;
+import org.glassfish.jersey.server.ResourceConfig;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.neo4j.graphdb.GraphDatabaseService;
+import org.neo4j.graphdb.Node;
+import org.neo4j.graphdb.factory.GraphDatabaseFactory;
+import org.neo4j.tooling.GlobalGraphOperations;
+
+import com.sun.net.httpserver.HttpServer;
+
 @Path("yurl")
-public static class HelloWorldResource { // Must be public
+public class HelloWorldResource { // Must be public
 
 	@GET
 	@Path("uncategorized")
