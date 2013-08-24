@@ -101,11 +101,11 @@ public class HelloWorldResource { // Must be public
 	@Produces("application/json")
 	public Response relate(@QueryParam("parentID") String parentID, @QueryParam("childID") String childID) throws JSONException {
 		System.out.println("relate() " + parentID + ", " + childID);
-				JSONObject json = new JSONObject() {
-					{
-						put("status", "SUCCESS");
-					}
-				};
+		JSONObject json = new JSONObject() {
+			{
+				put("status", "SUCCESS");
+			}
+		};
 		return Response.ok().header("Access-Control-Allow-Origin", "*")
 				.entity(json.toString()).type("application/json").build();
 	}
