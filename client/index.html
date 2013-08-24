@@ -16,7 +16,7 @@ $(document).ready(function(){
         	if (event.which == String.fromCharCode(event.which)) {
 				alert(String.fromCharCode(event.which));        		
         	}
-alert(String.fromCharCode(event.which));
+			alert(String.fromCharCode(event.which));
 			var url = "http://localhost:9099/yurl/relate?parent=" +b.categoryNode+"&child=" +  $("#urls").children()[0].id;
 			$.getJSON(url,function(result){
 				if (result.status == 'SUCCESS') {
