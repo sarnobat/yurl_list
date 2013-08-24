@@ -100,8 +100,7 @@ public class HelloWorldResource { // Must be public
 	@Path("relate")
 	@Produces("application/json")
 	public Response relate(@QueryParam("parentID") String parentID, @QueryParam("childID") String childID) throws JSONException {
-		System.out.println("relate()");
-		println("relate() " + parentID + ", " + childID);
+		System.out.println("relate() " + parentID + ", " + childID);
 				JSONObject json = new JSONObject() {
 					{
 						put("status", "SUCCESS");
