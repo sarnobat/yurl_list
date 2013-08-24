@@ -14,7 +14,6 @@ $(document).ready(function(){
         $("#keys").append(b.categoryNode + "::" + b.keyCombo + "\n");
         var kb = new kb_shortcut();
         kb.add(b.keyCombo, function(){
-			//alert(b.categoryNode);
 			var url = "http://localhost:9099/yurl/relate?parent=" +b.categoryNode+"&child=" +  $("#urls").children()[0].id;
 			$.getJSON(url,function(result){
 				if (result.status == 'SUCCESS') {
