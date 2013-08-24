@@ -101,7 +101,7 @@ import com.sun.net.httpserver.HttpServer;
 				System.out.println(url);
 				System.out.println();
 			}
-
+			graphDb.shutdown();
 			return Response.ok().header("Access-Control-Allow-Origin", "*")
 					.entity(jsonArray.toString()).type("application/json").build();
 
@@ -112,12 +112,14 @@ import com.sun.net.httpserver.HttpServer;
 		public Response relate(@QueryParam("parentID") String parentID,
 				@QueryParam("childID") String childID) throws JSONException {
 			System.out.println("relate() " + parentID + ", " + childID);
-
+			System.out.println("1");
 			GraphDatabaseService graphDb = new GraphDatabaseFactory().newEmbeddedDatabase("yurl.db");
-			
+			System.out.println("2");
 			Transaction tx = graphDb.beginTx();
+			System.out.println("3");
 			graphDb.getNodeById(Long.parseLong(parentID)).createRelationshipTo(
 					graphDb.getNodeById(Long.parseLong(childID)), RelTypes.CONTAINS);
+			System.out.println("4");
 			String outcome = "FAILURE";
 			try {
 				// Updating operations go here
@@ -126,6 +128,7 @@ import com.sun.net.httpserver.HttpServer;
 			} finally {
 				tx.finish();
 			}
+			graphDb.shutdown();
 			JSONObject json = new JSONObject();
 			json.put("status", outcome);
 			return Response.ok().header("Access-Control-Allow-Origin", "*").entity(json.toString())
