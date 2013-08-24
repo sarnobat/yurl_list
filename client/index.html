@@ -9,7 +9,7 @@ $(document).ready(function(){
   $("button").click(function(){
     $.getJSON("http://localhost:9099/yurl/uncategorized",function(result){
       $.each(result, function(id, field){
-        $("div").append(id + " " + field.url + " ");
+        $("div").append(id + ": "+ field.title + " (" + field.url + ") " + "<br>");
       });
     });
   });
