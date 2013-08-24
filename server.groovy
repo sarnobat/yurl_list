@@ -38,23 +38,34 @@ import com.sun.net.httpserver.HttpServer;
 				{
 					put(new JSONObject() {
 						{
-							put("categoryNode", "47");
+							put("type", "categoryNode");
 							put("key", "B");
 							put("name", "business");
+							put("id", "47");
 						}
 					});
 					put(new JSONObject() {
 						{
-							put("categoryNode", "46");
+							put("type", "categoryNode");
 							put("key", "T");
 							put("name", "technology");
+							put("id", "46");
 						}
 					});
 					put(new JSONObject() {
 						{
-							put("categoryNode", "45");
+							put("type", "categoryNode");
+							put("key", "#");
+							put("name", "trash");
+							put("id", "48");
+						}
+					});
+					put(new JSONObject() {
+						{
+							put("type", "categoryNode");
 							put("key", ")");
 							put("name", "root");
+							put("id", "45");
 						}
 					});
 				}
@@ -72,7 +83,7 @@ import com.sun.net.httpserver.HttpServer;
 			GraphDatabaseService graphDb = new GraphDatabaseFactory()
 					.newEmbeddedDatabase("yurl.db");
 			ExecutionEngine engine = new ExecutionEngine(graphDb);
-			ExecutionResult result = engine.execute("start n=node(*) MATCH n<-[r?:link]-source where not(has(n.type)) and r is null return n;");
+			ExecutionResult result = engine.execute("start n=node(*) MATCH n<-[r?:CONTAINS]-source where not(has(n.type)) and r is null return n;");
 			Iterator<Node> n_column = result.columnAs("n");
 			String nodeResult = "";
 			JSONArray jsonArray = new JSONArray();
@@ -94,6 +105,7 @@ import com.sun.net.httpserver.HttpServer;
 				}
 				JSONObject json = new JSONObject();
 				json.put("id", id);
+				json.put("identifier", id);
 				json.put("url", url);
 				json.put("title", title);
 				jsonArray.put(json);

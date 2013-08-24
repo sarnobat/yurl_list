@@ -11,10 +11,10 @@ $(document).ready(function(){
   			
   	$.getJSON("http://localhost:9099/yurl/keys",function(result){
       $.each(result, function(a,binding,c){
-        $("#keys").append(binding.categoryNode + "::" + binding.keyCombo + "\n");
+        $("#keys").append(binding.key + "::" + binding.name + "\n");
         $(window).keypress(function(event) {
         	if (binding.key == String.fromCharCode(event.which)) {
-				var url = "http://localhost:9099/yurl/relate?parentID=" +binding.categoryNode+"&childID=" +  $("#urls").children()[0].id;
+				var url = "http://localhost:9099/yurl/relate?parentID=" +binding.id+"&childID=" +  $("#urls").children()[0].id;
 				$.getJSON(url,function(result){
 					if (result.status == 'SUCCESS') {
 						$("#urls").children()[0].remove();
@@ -26,8 +26,8 @@ $(document).ready(function(){
       });
     });
     $.getJSON("http://localhost:9099/yurl/uncategorized",function(result){
-      $.each(result, function(id, field){
-        $("#urls").append("<li id="+id+">[" + id + "]: "+ field.title + " (" + field.url + ") " + "</li>");
+      $.each(result, function(resultRowNumber, field){
+        $("#urls").append("<li id="+field.id+">[" + field.id + "]: "+ field.title + " (" + field.url + ") " + "</li>");
       });
     });
   });
