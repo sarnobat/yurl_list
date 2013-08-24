@@ -3,7 +3,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.LinkedList;
 
-import javax.ws.rs.GET;
+import javax.ws.rs.*;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -99,9 +99,9 @@ public class HelloWorldResource { // Must be public
 	@GET
 	@Path("relate")
 	@Produces("application/json")
-	public Response relate() throws JSONException {
+	public Response relate(@QueryParam("parentID") String parentID, @QueryParam("childID") String childID) throws JSONException {
 		System.out.println("relate()");
-		println("relate()");
+		println("relate() " + parentID + ", " + childID);
 				JSONObject json = new JSONObject() {
 					{
 						put("status", "SUCCESS");

@@ -14,7 +14,7 @@ $(document).ready(function(){
         $("#keys").append(binding.categoryNode + "::" + binding.keyCombo + "\n");
         $(window).keypress(function(event) {
         	if (binding.key == String.fromCharCode(event.which)) {
-				var url = "http://localhost:9099/yurl/relate?parent=" +binding.categoryNode+"&child=" +  $("#urls").children()[0].id;
+				var url = "http://localhost:9099/yurl/relate?parentID=" +binding.categoryNode+"&childID=" +  $("#urls").children()[0].id;
 				$.getJSON(url,function(result){
 					if (result.status == 'SUCCESS') {
 						$("#urls").children()[0].remove();
