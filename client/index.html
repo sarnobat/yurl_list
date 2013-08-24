@@ -8,8 +8,8 @@
 $(document).ready(function(){
   $("button").click(function(){
     $.getJSON("http://localhost:9099/yurl/uncategorized",function(result){
-      $.each(result, function(i, field){
-        $("div").append(i + " " + field.url + " ");
+      $.each(result, function(id, field){
+        $("div").append(id + " " + field.url + " ");
       });
     });
   });
