@@ -9,7 +9,7 @@ $(document).ready(function(){
   $("button").click(function(){
   	$.getJSON("http://localhost:9099/yurl/keys",function(result){
       $.each(result, function(a,b,c){
-        $("#keys").text(b.categoryNode + "::" + b.keyCombo);
+        $("#keys").append(b.categoryNode + "::" + b.keyCombo + "\n");
       });
     });
     $.getJSON("http://localhost:9099/yurl/uncategorized",function(result){
