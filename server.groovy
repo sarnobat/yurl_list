@@ -1,10 +1,14 @@
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.LinkedList;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.ResponseBuilder;
 
 import org.glassfish.jersey.jdkhttp.JdkHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
@@ -24,10 +28,10 @@ public class HelloWorldResource { // Must be public
 	@GET
 	@Path("uncategorized")
 	@Produces("application/json")
-	public String json() throws JSONException {
+	public Response json() throws JSONException {
 		GraphDatabaseService graphDb = new GraphDatabaseFactory()
 				.newEmbeddedDatabase("yurl.db");
-		
+
 		JSONArray jsonArray = new JSONArray();
 		Iterable<Node> allNodes = GlobalGraphOperations.at(graphDb).getAllNodes();
 		for (final Node node : allNodes) {
@@ -49,8 +53,10 @@ public class HelloWorldResource { // Must be public
 			System.out.println(url);
 			System.out.println();
 		}
-		
-		return jsonArray.toString();
+
+		return Response.ok().header("Access-Control-Allow-Origin", "*")
+				.entity(jsonArray.toString()).type("application/json").build();
+
 	}
 }
 
