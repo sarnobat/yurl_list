@@ -102,13 +102,7 @@ public class HelloWorldResource { // Must be public
 		println("relate()");
 				JSONObject json = new JSONObject() {
 					{
-						put("categoryNode", "12345678");
-						put("keyCombo", new JSONArray() {
-							{
-								put("Shift");
-								put("b");
-							}
-						});
+						put("status", "SUCCESS");
 					}
 				};
 		return Response.ok().header("Access-Control-Allow-Origin", "*")

@@ -19,7 +19,8 @@ $(document).ready(function(){
 			alert(url);
 			$.getJSON(url,function(result){
 				// TODO: check if successful or not
-				alert("url executed");
+				alert(result);
+				alert(result.status);
 				//$("#urls").children()[0].remove();
 			});
 
