@@ -50,6 +50,7 @@ import com.sun.net.httpserver.HttpServer;
 				jsonArray.put(json);
 				System.out.println(json);
 			}
+			graphDb.shutdown();
  			/*
 			JSONArray jsonArray = new JSONArray() {
 				{
@@ -123,6 +124,7 @@ import com.sun.net.httpserver.HttpServer;
 					title = (String) node.getProperty("title");
 				}
 				String url = "";
+				println ">>>>" + title;
 				if (node.hasProperty("url")) {
 					url = (String) node.getProperty("url");
 				}
