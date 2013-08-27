@@ -34,6 +34,23 @@ import com.sun.net.httpserver.HttpServer;
 		@Path("keys")
 		@Produces("application/json")
 		public Response keys() throws JSONException {
+			JSONArray jsonArray = new JSONArray();
+			println 1;
+			GraphDatabaseService graphDb = new GraphDatabaseFactory().newEmbeddedDatabase("yurl.db");
+			ExecutionEngine engine = new ExecutionEngine(graphDb);
+			ExecutionResult result = engine.execute("start n=node(*) MATCH n WHERE has(n.type) and n.type='categoryNode' RETURN n;");
+			Iterator<Node> n_column = result.columnAs("n");
+			String nodeResult = "";
+			println 4;
+			for (Node node : IteratorUtil.asIterable(n_column)) {
+				// todo: maybe catch errors for missing properties and report them?
+				JSONObject json = new JSONObject();
+				json.put("key", node.getProperty("key"));
+				json.put("name", node.getProperty("name"));
+				jsonArray.put(json);
+				System.out.println(json);
+			}
+ 			/*
 			JSONArray jsonArray = new JSONArray() {
 				{
 					put(new JSONObject() {
@@ -77,7 +94,7 @@ import com.sun.net.httpserver.HttpServer;
                                                 }
                                         });
 				}
-			};
+			};*/
 			return Response.ok().header("Access-Control-Allow-Origin", "*")
 					.entity(jsonArray.toString()).type("application/json").build();
 		}
