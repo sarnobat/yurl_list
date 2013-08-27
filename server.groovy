@@ -88,7 +88,6 @@ import com.sun.net.httpserver.HttpServer;
 			String nodeResult = "";
 			JSONArray jsonArray = new JSONArray();
 			Iterable<Node> allNodes = GlobalGraphOperations.at(graphDb).getAllNodes();
-
 			for (Node node : IteratorUtil.asIterable(n_column)) {
 				// note: we're grabbing the name property from the node,
 				// not from the n.name in this case.
@@ -150,4 +149,4 @@ import com.sun.net.httpserver.HttpServer;
 	}
 
 HttpServer server = JdkHttpServerFactory.createHttpServer(
-		new URI("http://localhost:9099/"), new ResourceConfig(HelloWorldResource.class));
+		new URI("http://localhost:4446/"), new ResourceConfig(HelloWorldResource.class));
