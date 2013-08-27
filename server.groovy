@@ -86,8 +86,7 @@ import com.sun.net.httpserver.HttpServer;
 		@GET
 		@Path("uncategorized")
 		@Produces("application/json")
-		public Response json() throws JSONException {
-			System.out.println("1");
+		public Response uncategorized() throws JSONException {
 			GraphDatabaseService graphDb = new GraphDatabaseFactory()
 					.newEmbeddedDatabase("yurl.db");
 			ExecutionEngine engine = new ExecutionEngine(graphDb);
